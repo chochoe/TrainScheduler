@@ -29,27 +29,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
+							<!-- generate rows through clicking submit button -->
 							</tbody>
 						</table>
 					</div>
@@ -83,6 +63,7 @@
 			</div>
 		</div>
 	</div>
+	<!-- use moment.js to link train times and frequencies to time until next train arrival for given input data -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.js"></script>
 	<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
@@ -98,10 +79,12 @@
   		var app = firebase.initializeApp(config);
   		var db = app.database();
 
-		var trainData = []; // Empty array to hold data from inputs
+		var trainData = [];
 
-			//  event listener for submit button
 			$('#submit').on('click', function() {
+
+				// use this to put data into respective columns
+				$('table.body').append('<tr><td>' + whateverVariable + '</td><td>' + anotherVariable + </td></tr>');
 
 				// loop through train-data elements and push
 				// value from inputs to array
