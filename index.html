@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<title>Train Scheduler</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron" style="background-color: #7f462c; color: white">
+			<h1 class="text-center">Anytime is Train Time</h1>
+			<h3 class="text-center">Choo Choo. Chee Chee.</h3>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h3 class="panel-title"><strong>Current Train Schedule</strong></h3>
+					</div>
+					<div class="panel-body">
+						<table class="table table-hover" id="trainTable">
+							<thead>
+								<tr>
+									<th>Train Name</th>
+									<th>Destination</th>
+									<th>Frequency (min)</th>
+									<th>Next Arrival</th>
+									<th>Minutes Away</th>
+								</tr>
+							</thead>
+							<tbody>
+							<!-- generate rows through clicking submit button -->
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h3 class="panel-title"><strong>Add Train</strong></h3>
+					</div>
+					<div class="panel-body">
+						<form>
+							<div class="form-group">
+								<label for="">Train Name</label>
+								<input type="text" class="form-control" id="trainNameInput">
+							</div>
+							<div class="form-group">
+								<label for="">Destination</label>
+								<input type="text" class="form-control" id="destinationInput">
+							</div>
+							<div class="form-group">
+								<label for="">First Train Time (hh:mm - military time)</label>
+								<input type="text" class="form-control" id="firstTrainInput">
+							</div>									
+							<div class="form-group">
+								<label for="">Frequency (min)</label>
+								<input type="text" class="form-control" id="frequencyInput">
+							</div>
+							<button type="submit" class="btn btn-primary" id="addTrainBtn">Submit</button>		
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- use moment.js to link train times and frequencies to time until next train arrival for given input data -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+	<script>
+		var config = {
+    		apiKey: "AIzaSyDJoJq1dAJjuZukeszRNWr8DaNZh1B7Q9U",
+    		authDomain: "project-one-cb0b7.firebaseapp.com",
+    		databaseURL: "https://project-one-cb0b7.firebaseio.com",
+    		projectId: "project-one-cb0b7",
+    		storageBucket: "project-one-cb0b7.appspot.com",
+    		messagingSenderId: "845062774352"
+  		};
+  		var app = firebase.initializeApp(config);
+  		var db = app.database();
+
+		var trainData = [];
+
+			$('#submit').on('click', function() {
+
+				// use this to put data into respective columns
+				$('table.body').append('<tr><td>' + whateverVariable + '</td><td>' + anotherVariable + </td></tr>');
+
+				// loop through train-data elements and push
+				// value from inputs to array
+				$('.train-data').each(function(index) {
+		            console.log( $(this).val() )
+		            trainData.push( $(this).val() )
+				})
+
+				console.log('Train Data -- ', trainData);
+				db.ref('trains/1').set({
+					name: trainData[0],
+					destination: trainData[1],
+					departure_time: trainData[2],
+					frequency: trainData[3]
+				})
+			})
+	</script>
+</body>
+</html>
